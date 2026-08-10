@@ -5,7 +5,7 @@ import './App.css'
 import MortgageCalculator from './components/MortgageCalculator'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [results, setResults] = useState(null)
 
   return (
     <>
