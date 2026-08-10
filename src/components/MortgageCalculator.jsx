@@ -5,7 +5,7 @@ const MortgageCalculator = () => {
     const [amount, setAmount] = useState('')
     const [term, setTerm] = useState('')
     const [rate,setRate] = useState('')
-    const [type, setType] = useState(null)
+    const [type, setType] = useState('')
     const [error, setError] = useState({
         amount: false,
         term: false,
@@ -13,27 +13,40 @@ const MortgageCalculator = () => {
         type: false
     })
 
+    const repay = (P, r, n) => {
+        const R = r / 100 / 12
+        const N = n * 12
+        const top = P * (R * Math.pow((1+R),N))
+        const bottom = Math.pow((1+R),(N-1))
+        console.log(top/bottom)
+        return top/bottom
+    }
+
+    const interestOnly = (P, r) => {
+        const R = r / 100 /12
+        return P * R
+    }
+    
     const handleCalculation = () => {
-        if (amount.trim() === ''){
-            setError((prev) => ({...prev, amount: true}))
-        }else{
-            setError((prev) => ({...prev, amount: false}))
+        const newErrors = {
+            amount: amount.trim() === '',
+            term: term.trim() === '',
+            rate: rate.trim() === '',
+            type: type === ''
         }
+        setError(newErrors)
 
-        if (term.trim() === ''){
-            setError((prev) => ({...prev, term: true}))
-        }else{
-            setError((prev) => ({...prev, term: false}))
-        }
-
-        if (rate.trim() === ''){
-            setError((prev) => ({...prev, rate: true}))
-        }else{
-            setError((prev) => ({...prev, rate: false}))
-        }
-
-        const checking = Object.values(error)
+        const checking = Object.values(newErrors).some(Boolean)
         console.log(checking)
+        if(checking){
+            return
+        }
+
+        
+        console.log(amount, term, rate, type)
+        if(type === 'repayment'){
+            repay(Number(amount), Number(rate), Number(term))
+        }
     }
 
   return (
