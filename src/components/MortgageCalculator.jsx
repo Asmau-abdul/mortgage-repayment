@@ -17,8 +17,7 @@ const MortgageCalculator = () => {
         const R = r / 100 / 12
         const N = n * 12
         const top = P * (R * Math.pow((1+R),N))
-        const bottom = Math.pow((1+R),(N-1))
-        console.log(top/bottom)
+        const bottom = Math.pow((1+R),N) - 1
         return top/bottom
     }
 
@@ -32,20 +31,25 @@ const MortgageCalculator = () => {
             amount: amount.trim() === '',
             term: term.trim() === '',
             rate: rate.trim() === '',
-            type: type === ''
+            type: type === null
         }
         setError(newErrors)
 
         const checking = Object.values(newErrors).some(Boolean)
-        console.log(checking)
+        
         if(checking){
             return
         }
 
-        
-        console.log(amount, term, rate, type)
         if(type === 'repayment'){
-            repay(Number(amount), Number(rate), Number(term))
+            const monthly = repay(Number(amount), Number(rate), Number(term))
+            const total = monthly * (Number(term) * 12)
+            console.log(monthly.toFixed(2), total.toFixed(2))
+        }
+
+        if(type === 'interest'){
+            const total = interestOnly(Number(amount), Number(rate))
+            console.log(total)
         }
     }
 
