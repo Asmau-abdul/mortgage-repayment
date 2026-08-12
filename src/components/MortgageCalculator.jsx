@@ -85,18 +85,21 @@ const MortgageCalculator = ({onCalculate}) => {
             <div className="form">
                 <div className="amount">
                     <label htmlFor="mortgageAmount">Mortgage Amount</label>
-                    <input type="number" name="" id="mortgageAmount" value={amount} onChange={(e) => setAmount(e.target.value)}/>
+                    <input type="number" name="" id="mortgageAmount" value={amount} className={error.amount ? 'input-error' : ''} onChange={(e) => setAmount(e.target.value)}/>
+                    {error.amount && <p className='error-message'>This field is required</p>}
                 </div>
 
                 <div className="term-rate">
                     <div className='term'>
                         <label htmlFor="term">Mortgage Term</label>
-                        <input type="number" name="years" id="term" value={term} onChange={(e) => setTerm(e.target.value)}/>
+                        <input type="number" name="years" id="term" value={term} className={error.term ? 'input-error' : ''} onChange={(e) => setTerm(e.target.value)}/>
+                        {error.term && <p className='error-message'>This field is required</p>}
                     </div>
 
                     <div className="rate">
                         <label htmlFor="rate">Interest Rate</label>
-                        <input type="number" name="rate" id="rate" value={rate} onChange={(e) => setRate(e.target.value)}/>
+                        <input type="number" name="rate" id="rate" value={rate} className={error.rate ? 'input-error' : ''} onChange={(e) => setRate(e.target.value)}/>
+                        {error.rate && <p className='error-message'>This field is required</p>}
                     </div>
                 </div>
 
@@ -109,6 +112,7 @@ const MortgageCalculator = ({onCalculate}) => {
                     <input type="radio" name="type" value="interest" id='interest' checked={type === 'interest'} onChange={(e) => setType(e.target.value)}/>
                     <label htmlFor="interest">Interest Only</label>
                 </div>
+                {error.type === 'null' && <p className='error-message'>This field is required</p>}
 
                 <button className='calcBtn' onClick={handleCalculation}> Calculate Repayments</button>
             </div>
