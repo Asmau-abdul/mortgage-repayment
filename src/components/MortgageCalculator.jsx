@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../styles/mortgageCalculator.scss'
 
-const MortgageCalculator = () => {
+const MortgageCalculator = ({onCalculate}) => {
     const [amount, setAmount] = useState('')
     const [term, setTerm] = useState('')
     const [rate,setRate] = useState('')
@@ -12,6 +12,20 @@ const MortgageCalculator = () => {
         rate: false,
         type: false
     })
+
+    const onClear = () => {
+        setAmount('')
+        setTerm('')
+        setRate('')
+        setType('')
+        setError({
+            amount: false,
+            term: false,
+            rate: false,
+            type: false
+        })
+        onCalculate(null)
+    }
 
     const repay = (P, r, n) => {
         const R = r / 100 / 12
@@ -44,12 +58,19 @@ const MortgageCalculator = () => {
         if(type === 'repayment'){
             const monthly = repay(Number(amount), Number(rate), Number(term))
             const total = monthly * (Number(term) * 12)
-            console.log(monthly.toFixed(2), total.toFixed(2))
+            onCalculate({
+                type: 'repayment',
+                monthly: monthly.toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2}),
+                total: total.toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2})
+            })
         }
 
         if(type === 'interest'){
             const total = interestOnly(Number(amount), Number(rate))
-            console.log(total)
+            onCalculate({
+                type: 'interest',
+                monthly: total.toLocaleString('en-GB', {minimumFractionDigits: 2, maximumFractionDigits: 2})
+            })
         }
     }
 
@@ -58,7 +79,7 @@ const MortgageCalculator = () => {
         <div className='mortgage-calculator'>
             <div className='title-header'>
                 <h1>Mortgage Calculator</h1>
-                <button>Clear All</button>
+                <button onClick={onClear}>Clear All</button>
             </div>
 
             <div className="form">
@@ -81,11 +102,11 @@ const MortgageCalculator = () => {
 
                 <label htmlFor="type">Mortgage Type</label>
                 <div className='repayment'>
-                    <input type="radio" name="type" value="repayment" id='repayment' onChange={(e) => setType(e.target.value)}/>
+                    <input type="radio" name="type" value="repayment" id='repayment' checked={type === 'repayment'} onChange={(e) => setType(e.target.value)}/>
                     <label htmlFor="repayment">Repayment</label>
                 </div>
                 <div className="interest">
-                    <input type="radio" name="type" value="interest" id='interest' onChange={(e) => setType(e.target.value)}/>
+                    <input type="radio" name="type" value="interest" id='interest' checked={type === 'interest'} onChange={(e) => setType(e.target.value)}/>
                     <label htmlFor="interest">Interest Only</label>
                 </div>
 

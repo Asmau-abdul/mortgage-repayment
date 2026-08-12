@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import MortgageCalculator from './components/MortgageCalculator'
+import MortgageResult from './components/MortgageResult'
 
 function App() {
   const [results, setResults] = useState(null)
@@ -10,7 +11,9 @@ function App() {
   return (
     <>
       <div>
-        <MortgageCalculator/>
+        <MortgageCalculator onCalculate={setResults}/>
+
+        <MortgageResult results={results}/>
       </div>
     </>
   )
