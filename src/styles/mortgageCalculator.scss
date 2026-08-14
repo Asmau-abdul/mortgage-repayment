@@ -1,8 +1,13 @@
 .mortgage-calculator{
     background-color: #fff;
-    width: 50%;
-    padding: 2rem 1.5rem;
+    width: 40%;
+    align-self: stretch;
+    padding: 1.5rem 3rem 1.5rem 1.5rem;
     border-radius: 15px 0 0 15px;
+
+    @media (max-width: 800px) {
+        width: 50%;
+    }
 
     .title-header{
         display: flex;
@@ -12,5 +17,96 @@
             font-size: 24px;
             color: hsl(202, 55%, 16%);
         }
+
+        button{
+            color: hsl(200, 24%, 40%);
+            text-decoration: underline;
+            background-color: #fff;
+            border: none;
+        }
+    }
+
+    .form{
+        label{
+            color: hsl(200, 24%, 40%);
+        }
+
+        
+        .input-and-tag{
+            display: flex;
+            border: 1px solid hsl(200, 24%, 40%);
+            margin: 10px 0 15px;
+            
+            p{
+                padding: 8px 12px;
+                background: hsl(202, 86%, 94%);
+                color: hsl(200, 24%, 40%);
+                font-weight: 600;
+            }
+            
+            input{
+                width: 100%;
+                height: 30px;
+                border: none;
+                outline: none;
+            }
+        }
+
+        .input-and-tag.input-error{
+            border: 1px solid hsl(4, 69%, 50%);
+
+            p{
+                background: hsl(4, 69%, 50%);
+                color: #fff;
+            }
+        }
+
+        .term-rate{
+            display: flex;
+            gap: 20px;
+        }
+
+        .repayment, .interest{
+            border: 1px solid hsl(200, 24%, 40%);
+            height: 40px;
+            margin: 10px 0 ;
+            padding: 8px;
+            display: flex;
+            gap: 10px;
+            
+            label{
+                color: hsl(202, 55%, 16%);
+                font-weight: 600;
+            }
+
+        }
+        
+        .repayment.selected, .interest.repayment.selected{
+            background-color: hsl(61, 70%, 52%);
+            border: 1px solid hsl(61, 70%, 52%);
+        }
+
+        .calcBtn{
+            background: hsl(61, 70%, 52%);
+            border: none;
+            height: 40px;
+            padding: 0 40px;
+            margin: 25px 0;
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            img{
+                width: 20px;
+            }
+        }
+
+    }
+
+
+    .error-message{
+        color: hsl(4, 69%, 50%);
+        margin: -5px 0 15px;
     }
 }

@@ -1,16 +1,70 @@
 .mortgage-result{
     background: hsl(202, 55%, 16%);
-    width: 50%;
-    text-align: center;
-    padding: 1.5rem 2.5rem;
+    display: flex;
+    align-items: center;
+    width: 35%;
+    align-self: stretch;
+    margin-left: -30px;
+    padding: 1.5rem;
+    border-radius: 0 15px 15px 50px;
+
+    @media (max-width: 600px) {
+        &.mortgage-result{
+            width: 100%;
+            border-radius: 0 0 15px 15px;
+            align-items: flex-start;
+        }
+    }
+
+    h1{
+        color: hsl(61, 70%, 52%);
+    }
 
     h2{
         color: hsl(202, 86%, 94%);
-        font-size: 24px;
+        font-size: 20px;
+        letter-spacing: 1px;
     }
 
     p{
         color: hsl(203, 41%, 72%);
-        font-size: 16px;
+        font-size: 12px;
+        line-height: 20px;
     }
+
+    .empty-result{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+
+        .empty-icon{
+            width: 150px;
+        }
+        text-align: center;
+    }
+
+    .final-result{
+        background: hsl(201, 56%, 12%);
+        padding: 2rem;
+        border-radius: 10px;
+        width: 100%;
+
+        h1{
+            font-size: 48px;
+            margin: 0.5rem 0 1.5rem;
+        }
+
+        hr{
+            border: none;
+            border-top: 1px solid hsl(200, 24%, 40%);
+            margin: 1.5rem 0;
+        }
+
+        h2{
+            font-size: 28px;
+            margin-top: 0.5rem;
+        }
+    }
+
 }

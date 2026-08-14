@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className='mortgage'>
         <MortgageCalculator onCalculate={setResults}/>
 
         <MortgageResult results={results}/>

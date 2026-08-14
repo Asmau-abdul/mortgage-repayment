@@ -6,8 +6,9 @@ const MortgageResult = ({results}) => {
   return (
     <>
         <div className='mortgage-result'>
+            <div>
             { !results && <div className='empty-result'>
-                <img src={emptyResult} alt="No results yet" />
+                <img src={emptyResult} alt="No results yet" className='empty-icon'/>
                 <h2>Result shown here</h2>
                 <p>Complete the form and click "calculate repayments" 
                     to see what your monthly repayments would be</p>
@@ -45,6 +46,7 @@ const MortgageResult = ({results}) => {
                     </div>
                 </>
             )}
+            </div>
         </div>
     </>
   )

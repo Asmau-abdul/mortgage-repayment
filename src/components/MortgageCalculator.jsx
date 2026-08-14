@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import '../styles/mortgageCalculator.scss'
+import calculator from '../assets/images/icon-calculator.svg'
 
 const MortgageCalculator = ({onCalculate}) => {
     const [amount, setAmount] = useState('')
     const [term, setTerm] = useState('')
     const [rate,setRate] = useState('')
-    const [type, setType] = useState('')
+    const [type, setType] = useState(null)
     const [error, setError] = useState({
         amount: false,
         term: false,
@@ -17,7 +18,7 @@ const MortgageCalculator = ({onCalculate}) => {
         setAmount('')
         setTerm('')
         setRate('')
-        setType('')
+        setType(null)
         setError({
             amount: false,
             term: false,
@@ -85,20 +86,29 @@ const MortgageCalculator = ({onCalculate}) => {
             <div className="form">
                 <div className="amount">
                     <label htmlFor="mortgageAmount">Mortgage Amount</label>
-                    <input type="number" name="" id="mortgageAmount" value={amount} className={error.amount ? 'input-error' : ''} onChange={(e) => setAmount(e.target.value)}/>
+                    <div className={`input-and-tag ${error.rate ? 'input-error' : ''}`}>
+                        <p>£</p>
+                        <input type="number" name="" id="mortgageAmount" value={amount} className={error.amount ? 'input-error' : ''} onChange={(e) => setAmount(e.target.value)}/>
+                    </div>
                     {error.amount && <p className='error-message'>This field is required</p>}
                 </div>
 
                 <div className="term-rate">
                     <div className='term'>
                         <label htmlFor="term">Mortgage Term</label>
-                        <input type="number" name="years" id="term" value={term} className={error.term ? 'input-error' : ''} onChange={(e) => setTerm(e.target.value)}/>
+                        <div className={`input-and-tag ${error.rate ? 'input-error' : ''}`}>
+                            <input type="number" name="years" id="term" value={term} className={error.term ? 'input-error' : ''} onChange={(e) => setTerm(e.target.value)}/>
+                            <p>years</p>
+                        </div>
                         {error.term && <p className='error-message'>This field is required</p>}
                     </div>
 
                     <div className="rate">
                         <label htmlFor="rate">Interest Rate</label>
-                        <input type="number" name="rate" id="rate" value={rate} className={error.rate ? 'input-error' : ''} onChange={(e) => setRate(e.target.value)}/>
+                        <div className={`input-and-tag ${error.rate ? 'input-error' : ''}`}>
+                            <input type="number" name="rate" id="rate" value={rate} onChange={(e) => setRate(e.target.value)}/>
+                            <p>%</p>
+                        </div>
                         {error.rate && <p className='error-message'>This field is required</p>}
                     </div>
                 </div>
@@ -112,9 +122,9 @@ const MortgageCalculator = ({onCalculate}) => {
                     <input type="radio" name="type" value="interest" id='interest' checked={type === 'interest'} onChange={(e) => setType(e.target.value)}/>
                     <label htmlFor="interest">Interest Only</label>
                 </div>
-                {error.type === 'null' && <p className='error-message'>This field is required</p>}
+                {error.type && <p className='error-message'>This field is required</p>}
 
-                <button className='calcBtn' onClick={handleCalculation}> Calculate Repayments</button>
+                <button className='calcBtn' onClick={handleCalculation}> <img src={calculator} alt="" /> Calculate Repayments</button>
             </div>
         </div>
     </>
