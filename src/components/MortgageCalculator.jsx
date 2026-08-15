@@ -86,7 +86,7 @@ const MortgageCalculator = ({onCalculate}) => {
             <div className="form">
                 <div className="amount">
                     <label htmlFor="mortgageAmount">Mortgage Amount</label>
-                    <div className={`input-and-tag ${error.rate ? 'input-error' : ''}`}>
+                    <div className={`input-and-tag ${error.amount ? 'input-error' : ''}`}>
                         <p>£</p>
                         <input type="number" name="" id="mortgageAmount" value={amount} className={error.amount ? 'input-error' : ''} onChange={(e) => setAmount(e.target.value)}/>
                     </div>
@@ -96,7 +96,7 @@ const MortgageCalculator = ({onCalculate}) => {
                 <div className="term-rate">
                     <div className='term'>
                         <label htmlFor="term">Mortgage Term</label>
-                        <div className={`input-and-tag ${error.rate ? 'input-error' : ''}`}>
+                        <div className={`input-and-tag ${error.term ? 'input-error' : ''}`}>
                             <input type="number" name="years" id="term" value={term} className={error.term ? 'input-error' : ''} onChange={(e) => setTerm(e.target.value)}/>
                             <p>years</p>
                         </div>
