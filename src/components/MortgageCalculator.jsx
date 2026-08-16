@@ -114,11 +114,11 @@ const MortgageCalculator = ({onCalculate}) => {
                 </div>
 
                 <label htmlFor="type">Mortgage Type</label>
-                <div className='repayment'>
+                <div className={`repayment ${type === 'repayment' ? 'selected' : ''}`}>
                     <input type="radio" name="type" value="repayment" id='repayment' checked={type === 'repayment'} onChange={(e) => setType(e.target.value)}/>
                     <label htmlFor="repayment">Repayment</label>
                 </div>
-                <div className="interest">
+                <div className={`interest ${type === 'interest' ? 'selected' : ''}`}>
                     <input type="radio" name="type" value="interest" id='interest' checked={type === 'interest'} onChange={(e) => setType(e.target.value)}/>
                     <label htmlFor="interest">Interest Only</label>
                 </div>
