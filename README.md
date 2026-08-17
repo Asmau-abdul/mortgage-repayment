@@ -38,8 +38,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: []
-- Live Site URL: []
+- Solution URL: [https://www.frontendmentor.io/solutions/react-scss-mortgage-calculator-with-form-validation-Ov_T5YPC5w]
+- Live Site URL: [https://mortgage-repayment-39x6.vercel.app/]
 
 ## My process
 
@@ -83,5 +83,5 @@ I also learned how to use toLocaleString() to format numbers with commas and dec
 
 ## Author
 
-- Frontend Mentor - []
-- GitHub - []
+- Frontend Mentor - [@Asmau-abdul](https://www.frontendmentor.io/profile/Asmau-abdul)
+- GitHub - [@Asmau-abdul](https://github.com/Asmau-abdul)
