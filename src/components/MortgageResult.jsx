@@ -1,6 +1,6 @@
 import React from 'react'
 import emptyResult from '../assets/images/illustration-empty.svg'
-import '../styles/MortgageResult.scss'
+import '../styles/mortgageResult.scss'
 
 const MortgageResult = ({results}) => {
   return (
